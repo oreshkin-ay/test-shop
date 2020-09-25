@@ -1,9 +1,9 @@
 import React from "react";
 
-import GoodsRouter from "./components/router";
+import ShopRouter from "./components/router";
 
 function App() {
-  return <GoodsRouter />;
+  return <ShopRouter />;
 }
 
 export default App;

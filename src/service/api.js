@@ -1,21 +1,31 @@
-import { GOODS } from "./mock";
+import { COMMODITY_DETAILS } from "./mockCommodity";
+import { CATALOG } from "./mockCatalog";
+import { PRODUCTS } from "./mockProducts";
+
+/**
+ * запрос каталога
+ */
+const getCatalog = () => {
+  // TODO Add Promise
+  return CATALOG;
+};
 
 /**
  * запрос товаров
  */
-const getGoods = () => {
-  // TODO Add Promise + SetTimiout
-  return GOODS;
+const getProducts = (category) => {
+  return PRODUCTS[category];
 };
 
 /**
  * запрос информации по товару
  */
-const getDetails = async (idGoods) => {
-  return {};
+const getDetails = async (idProduct) => {
+  return COMMODITY_DETAILS[idProduct];
 };
 
 export default {
-  getGoods,
+  getCatalog,
+  getProducts,
   getDetails,
 };

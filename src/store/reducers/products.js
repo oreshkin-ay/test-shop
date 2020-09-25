@@ -1,7 +1,7 @@
-export const storeNamePepos = "Goods";
+export const storeNamePepos = "Products";
 
 const initialState = {
-  goods: [],
+  list: [],
   details: null,
   total: 0,
 };
@@ -9,12 +9,12 @@ const initialState = {
 export default (state = initialState, action) => {
   const { payload } = action;
   switch (action.type) {
-    case "GET_GOODS_SUCCESS":
+    case "GET_PRODUCTS_SUCCESS":
       return {
         ...state,
         ...payload,
       };
-    case "GET_GOODS_DETAILS_SUCCESS":
+    case "GET_PRODUCT_DETAILS_SUCCESS":
       return {
         ...state,
         details: payload,

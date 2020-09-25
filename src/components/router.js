@@ -1,14 +1,27 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Page from "./Page";
+import Header from "./Header";
+import LayoutCommon from "./LayoutCommon";
+import Сommodity from "./Сommodity";
+import Products from "./Products";
+import Catalog from "./Catalog";
+import Cart from "./Cart/Cart";
+import NotFound from "./NotFound/NotFound";
 
-const GoodsRouter = () => (
+const ShopRouter = () => (
   <BrowserRouter>
-    <Switch>
-      <Route exact={true} path="/" component={Page} />
-    </Switch>
+    <Header />
+    <LayoutCommon>
+      <Switch>
+        <Route exact path="/product/:id" component={Сommodity} />
+        <Route exact path="/catalog/:product" component={Products} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/" component={Catalog} />
+        <Route exact path="*" component={NotFound} />
+      </Switch>
+    </LayoutCommon>
   </BrowserRouter>
 );
 
-export default GoodsRouter;
+export default ShopRouter;

@@ -1,0 +1,31 @@
+.Category {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgb(100, 62, 62);
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid rgb(165, 59, 59);
+    box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.5);
+    filter: brightness(0.85);
+  }
+
+  &-Img {
+    object-fit: contain;
+  }
+
+  &-Name {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.Text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

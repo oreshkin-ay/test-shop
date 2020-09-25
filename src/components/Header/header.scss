@@ -1,0 +1,22 @@
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  height: 40px;
+  background: #4a76a8;
+  z-index: 999;
+
+  &-Link {
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
