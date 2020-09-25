@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { increaseCountProduct } from "../../store/action/cart";
+import {
+  increaseCountProduct,
+  reduceCountProduct,
+  setCountProduct,
+} from "../../store/action/cart";
 import {
   cartProductSelector,
   cartsCountsSelector,
@@ -23,24 +27,36 @@ const Cart = () => {
     [dispatch]
   );
 
-  return [
-    {
-      id: "1",
-      imgUrl: "products/apple.png",
-      price: 22800,
-      title: "Обувь угги UGG Australia!",
+  const onReduceCount = useCallback(
+    (idProduct) => () => {
+      dispatch(reduceCountProduct(idProduct));
     },
-  ].map((product) => {
-    return (
-      <Order
-        key={`${product.id}`}
-        // countsProduct={countsProduct[product.id]}
-        countsProduct={8}
-        onIncreaseCount={onIncreaseCount}
-        product={product}
-      />
-    );
-  });
+    [dispatch]
+  );
+
+  const onChangeCount = useCallback(
+    (idProduct) => (event) => {
+      dispatch(setCountProduct({ [idProduct]: event.target.value }));
+    },
+    [dispatch]
+  );
+
+  return (
+    <div className={"Wrap-Order"}>
+      {list.map((product) => {
+        return (
+          <Order
+            key={`${product.id}`}
+            countsProduct={countsProduct[product.id]}
+            onIncreaseCount={onIncreaseCount}
+            onReduceCount={onReduceCount}
+            onChangeCount={onChangeCount}
+            product={product}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default Cart;

@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         },
       };
 
-    case "INCREASE":
+    case "SET_COUNT":
       return {
         ...state,
         counts: {

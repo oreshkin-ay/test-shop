@@ -24,9 +24,28 @@ export const increaseCountProduct = (idProduct) => (dispatch, getState) => {
   const count = state.cart.counts[idProduct];
 
   dispatch({
-    type: "INCREASE",
+    type: "SET_COUNT",
     payload: {
       [idProduct]: count + 1,
     },
+  });
+};
+
+export const reduceCountProduct = (idProduct) => (dispatch, getState) => {
+  const state = getState();
+  const count = state.cart.counts[idProduct];
+
+  dispatch({
+    type: "SET_COUNT",
+    payload: {
+      [idProduct]: count - 1 <= 0 ? 1 : count - 1,
+    },
+  });
+};
+
+export const setCountProduct = (countProduct) => (dispatch) => {
+  dispatch({
+    type: "SET_COUNT",
+    payload: countProduct,
   });
 };

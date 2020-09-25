@@ -2,15 +2,20 @@
   display: grid;
   overflow: hidden;
   justify-content: center;
+  grid-template-columns: 1fr [order] 2fr 1fr;
+  grid-row-gap: 20px;
 }
 
 .Order {
-  display: flex;
+  grid-column: order;
+  display: grid;
   align-items: center;
-  min-width: 0;
   padding: 15px;
-  border: 1px solid rgb(100, 62, 62);
+  border: 1px solid #643e3e;
   border-radius: 5px;
+  justify-items: center;
+  grid-template-columns: 1fr 4fr 1fr minmax(0, 2fr) 1fr;
+  column-gap: 10px;
 
   &-Img {
     width: 64px;
@@ -22,6 +27,12 @@
     display: flex;
     align-items: center;
     margin: 0 15px;
+  }
+
+  &-CountItem {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   &-Remove {
