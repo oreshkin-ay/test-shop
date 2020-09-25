@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  checkout,
   increaseCountProduct,
   reduceCountProduct,
   removeOrder,
@@ -10,20 +11,40 @@ import {
 import {
   cartProductSelector,
   cartsCountsSelector,
+  totalSelector,
 } from "../../store/selector/cart";
 
 import Order from "./Order/index";
 import Total from "./Total";
 
 import "./cart.scss";
+import { loadingSelector } from "../../store/selector/loading";
+import { errorSelector } from "../../store/selector/error";
 
 const Cart = () => {
   const dispatch = useDispatch();
 
+  /** SELECTOR */
+  const { isFetching, error } = useSelector((state) => {
+    return {
+      isFetching: loadingSelector(["ORDER"], state),
+      error: errorSelector(["ORDER"], state),
+    };
+  });
+
   const list = useSelector(cartProductSelector);
   const countsProduct = useSelector(cartsCountsSelector);
+  const totalSum = useSelector(totalSelector);
 
   /** CALLBACKS */
+  const onCheckout = useCallback(() => {
+    dispatch(checkout());
+  }, [dispatch]);
+
+  const onCheckoutError = useCallback(() => {
+    dispatch(checkout(true));
+  }, [dispatch]);
+
   const onIncreaseCount = useCallback(
     (idProduct) => () => {
       dispatch(increaseCountProduct(idProduct));
@@ -52,6 +73,8 @@ const Cart = () => {
     [dispatch]
   );
 
+  if (totalSum === 0) return "Корзина пуста";
+
   return (
     <>
       <div className={"Wrap-Order"}>
@@ -69,7 +92,13 @@ const Cart = () => {
           );
         })}
       </div>
-      <Total />
+      <Total
+        totalSum={totalSum}
+        onCheckout={onCheckout}
+        onCheckoutError={onCheckoutError}
+      />
+
+      {/* {error} */}
     </>
   );
 };

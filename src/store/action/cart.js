@@ -80,20 +80,20 @@ export const removeOrder = (idProduct) => (dispatch, getState) => {
 /**
  * запрос на оплату
  */
-export const checkout = (isError = true) => async (dispatch, getState) => {
+export const checkout = (isError = false) => async (dispatch, getState) => {
   const state = getState();
   const { cart } = state;
 
   dispatch({ type: "ORDER_REQUEST" });
 
   try {
-    await api.сheckoutOrder(cart, isError);
+    const result = await api.сheckoutOrder(cart, isError);
 
     dispatch({
       type: "ORDER_SUCCESS",
-      payload: true,
+      payload: result,
     });
-  } catch (e) {
-    dispatch({ type: "ORDER_FAILURE", payload: true });
+  } catch {
+    dispatch({ type: "ORDER_FAILURE", payload: { message: "Error" } });
   }
 };

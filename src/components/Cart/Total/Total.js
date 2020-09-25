@@ -1,29 +1,11 @@
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { checkout } from "../../../store/action/cart";
-import {
-  checkoutResultSelector,
-  totalSelector,
-} from "../../../store/selector/cart";
+import React from "react";
+import { useSelector } from "react-redux";
+import { totalSelector } from "../../../store/selector/cart";
 
 import "./total.scss";
 
 const Total = (props) => {
-  const dispatch = useDispatch();
-
-  /** SELECTOR */
-  const totalSum = useSelector(totalSelector);
-  const checkoutResult = useSelector(checkoutResultSelector);
-  console.log("checkoutResult", checkoutResult);
-
-  /** CALLBACKS */
-  const onCheckout = useCallback(() => {
-    dispatch(checkout());
-  }, [dispatch]);
-
-  const onCheckoutError = useCallback(() => {
-    dispatch(checkout(false));
-  }, [dispatch]);
+  const { onCheckout, onCheckoutError, totalSum } = props;
 
   return (
     <div className={"Wrap-Total"}>

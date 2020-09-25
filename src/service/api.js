@@ -2,9 +2,9 @@ import { COMMODITY_DETAILS } from "./mockCommodity";
 import { CATALOG } from "./mockCatalog";
 import { PRODUCTS } from "./mockProducts";
 
-const fetch = (data) => {
+const fetch = (data, isError = false) => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(data), 2000);
+    if (!isError) setTimeout(() => resolve(data), 2000);
     setTimeout(() => reject(data), 2000);
   });
 };
@@ -26,15 +26,15 @@ const getProducts = (category) => {
 /**
  * запрос информации по товару
  */
-const getDetails = async (idProduct) => {
+const getDetails = (idProduct) => {
   return fetch(COMMODITY_DETAILS[idProduct]);
 };
 
 /**
  * оформить
  */
-const сheckoutOrder = async (idProduct) => {
-
+const сheckoutOrder = (cart, isError) => {
+  return fetch(cart, isError);
 };
 
 export default {
