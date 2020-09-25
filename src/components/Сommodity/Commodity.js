@@ -3,32 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { buyProduct } from "../../store/action/cart";
 import { getProductDetails } from "../../store/action/products";
-import { errorSelector } from "../../store/selector/error";
-import { loadingSelector } from "../../store/selector/loading";
+import ErrorBoundaries from "../ErrorBoundaries";
 
 import "./commodity.scss";
 
 const Сommodity = (props) => {
   const dispatch = useDispatch();
+  const { id } = props.match.params;
 
   /** EFFECT */
   useEffect(() => {
-    dispatch(getProductDetails(props.match.params.id));
-  }, []);
+    dispatch(getProductDetails(id));
+  }, [dispatch, id]);
 
-  const { commodity, isFetching, error } = useSelector((state) => {
+  /** SELECTOR */
+  const { commodity } = useSelector((state) => {
     return {
       commodity: state.products.details,
-      isFetching: loadingSelector(["GET_PRODUCT_DETAILS"], state),
-      error: errorSelector(["GET_PRODUCT_DETAILS"], state),
     };
   });
 
   /** CALLBACKS */
   const onClickBuy = useCallback(() => {
     dispatch(buyProduct(commodity));
-  }, [commodity]);
-
+  }, [commodity, dispatch]);
 
   const renderGoods = useMemo(() => {
     return (
@@ -55,7 +53,11 @@ const Сommodity = (props) => {
     );
   }, [commodity, onClickBuy]);
 
-  return renderGoods;
+  return (
+    <ErrorBoundaries nameRequest={"GET_PRODUCT_DETAILS"}>
+      {renderGoods}
+    </ErrorBoundaries>
+  );
 };
 
 export default Сommodity;

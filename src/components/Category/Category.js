@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import "./category.scss";
 
 const Category = ({ category }) => {
-  const { title, categoryName, category: categoryCatalog, imgUrl } = category;
+  const { title, categoryName, imgUrl } = category;
   let history = useHistory();
 
   const handleClick = (e) => {

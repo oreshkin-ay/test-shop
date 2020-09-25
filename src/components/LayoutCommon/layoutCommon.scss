@@ -1,9 +1,5 @@
 .LayoutCommon {
-  // display: flex;
-  // flex-direction: column;
   margin: 60px 20px 0;
-  // высота хедера минус
-  // min-height: calc(100vh - 40px); + для лоадера
-  // align-items: center;
-  position: relative; // + для лоадер
+  min-height: calc(100vh - 60px);
+  position: relative;
 }

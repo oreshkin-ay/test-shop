@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -47,7 +47,6 @@ const Cart = () => {
 
   const onRemoveOrder = useCallback(
     (idProduct) => () => {
-      console.log('onRemoveOrder');
       dispatch(removeOrder(idProduct));
     },
     [dispatch]

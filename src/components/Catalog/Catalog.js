@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCatalog } from "../../store/action/catalog";
-import { loadingSelector } from "../../store/selector/loading";
-import { errorSelector } from "../../store/selector/error";
+import ErrorBoundaries from "../ErrorBoundaries";
 import Category from "../Category";
 
 import "./catalog.scss";
@@ -14,22 +13,22 @@ const Catalog = () => {
   /** EFFECT */
   useEffect(() => {
     dispatch(getCatalog());
-  }, []);
+  }, [dispatch]);
 
-  const { listCatalog, isFetching, error } = useSelector((state) => {
+  const { listCatalog } = useSelector((state) => {
     return {
       listCatalog: state.catalog.list,
-      isFetching: loadingSelector(["GET_CATALOG"], state),
-      error: errorSelector(["GET_CATALOG"], state),
     };
   });
 
   return (
-    <main className="Catalog">
-      {listCatalog.map((catalog) => {
-        return <Category key={catalog.id} category={catalog} />;
-      })}
-    </main>
+    <ErrorBoundaries nameRequest={"GET_CATALOG"}>
+      <main className="Catalog">
+        {listCatalog.map((catalog) => {
+          return <Category key={catalog.id} category={catalog} />;
+        })}
+      </main>
+    </ErrorBoundaries>
   );
 };
 

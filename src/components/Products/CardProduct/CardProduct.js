@@ -1,12 +1,9 @@
-import React, { useCallback, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { getProducts } from "../../../store/action/products";
-import { loadingSelector } from "../../../store/selector/loading";
-import { errorSelector } from "../../../store/selector/error";
-
 import "./сardProduct.scss";
+
 import { buyProduct } from "../../../store/action/cart";
 
 const CardProduct = ({ product }) => {
@@ -26,7 +23,7 @@ const CardProduct = ({ product }) => {
         });
       }
     },
-    [dispatch, history]
+    [dispatch, history, product, id]
   );
 
   return (

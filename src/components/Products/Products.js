@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { getProducts } from "../../store/action/products";
-import { loadingSelector } from "../../store/selector/loading";
-import { errorSelector } from "../../store/selector/error";
 
 import "./products.scss";
 import CardProduct from "./CardProduct";
+import ErrorBoundaries from "../ErrorBoundaries";
 
 const Products = () => {
   const history = useHistory();
@@ -20,22 +19,22 @@ const Products = () => {
   }, [history.location.pathname, dispatch]);
 
   /** SELECTOR */
-  const { listProducts, isFetching, error } = useSelector((state) => {
+  const { listProducts } = useSelector((state) => {
     return {
       listProducts: state.products.list,
-      isFetching: loadingSelector(["GET_PRODUCTS"], state),
-      error: errorSelector(["GET_PRODUCTS"], state),
     };
   });
 
   return (
-    <div className="Products">
-      <main className="Products-List">
-        {listProducts?.map((product) => {
-          return <CardProduct key={product.id} product={product} />;
-        })}
-      </main>
-    </div>
+    <ErrorBoundaries nameRequest={"GET_PRODUCTS"}>
+      <div className="Products">
+        <main className="Products-List">
+          {listProducts?.map((product) => {
+            return <CardProduct key={product.id} product={product} />;
+          })}
+        </main>
+      </div>
+    </ErrorBoundaries>
   );
 };
 
