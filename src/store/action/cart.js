@@ -52,6 +52,31 @@ export const setCountProduct = (countProduct) => (dispatch) => {
   });
 };
 
+export const removeOrder = (idProduct) => (dispatch, getState) => {
+  const state = getState();
+  const { counts, productDetails } = state.cart;
+  const newCounts = Object.entries(counts).reduce((acc, [key, count]) => {
+    if (key !== idProduct) acc[key] = +count;
+    return acc;
+  }, {});
+
+  const newProductDetails = Object.entries(productDetails).reduce(
+    (acc, [key, product]) => {
+      if (key !== idProduct) acc[key] = product;
+      return acc;
+    },
+    {}
+  );
+
+  dispatch({
+    type: "REMOVE_ORDER",
+    payload: {
+      counts: newCounts,
+      productDetails: newProductDetails,
+    },
+  });
+};
+
 export const checkout = (isError = true) => async (dispatch, getState) => {
   const state = getState();
   const { cart } = state;

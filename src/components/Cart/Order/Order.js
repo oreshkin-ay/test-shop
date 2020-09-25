@@ -11,11 +11,12 @@ const Order = (props) => {
     onReduceCount,
     product,
     countsProduct,
+    onRemoveOrder,
   } = props;
   const { id, imgUrl, title, price } = product;
 
   return (
-    <div className={'Order'}>
+    <div className={"Order"}>
       <img className={"Order-Img"} src={`/${imgUrl}`} alt={title} />
 
       <div className={"Order-Title"}>{title}</div>
@@ -42,7 +43,12 @@ const Order = (props) => {
 
       <div className={"Order-CountItem"}>{price * countsProduct}</div>
 
-      <img className={"Order-Remove"} src={remove} alt="remove" />
+      <img
+        className={"Order-Remove"}
+        src={remove}
+        alt="remove"
+        onClick={onRemoveOrder(id)}
+      />
     </div>
   );
 };

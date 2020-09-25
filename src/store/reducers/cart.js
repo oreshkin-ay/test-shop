@@ -31,6 +31,11 @@ export default (state = initialState, action) => {
           ...payload,
         },
       };
+    case "REMOVE_ORDER":
+      return {
+        ...state,
+        ...payload,
+      };
     case "SUCCESS_ORDER":
       return {
         ...state,

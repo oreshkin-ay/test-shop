@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   increaseCountProduct,
   reduceCountProduct,
+  removeOrder,
   setCountProduct,
 } from "../../store/action/cart";
 import {
@@ -44,6 +45,14 @@ const Cart = () => {
     [dispatch]
   );
 
+  const onRemoveOrder = useCallback(
+    (idProduct) => () => {
+      console.log('onRemoveOrder');
+      dispatch(removeOrder(idProduct));
+    },
+    [dispatch]
+  );
+
   return (
     <>
       <div className={"Wrap-Order"}>
@@ -55,6 +64,7 @@ const Cart = () => {
               onIncreaseCount={onIncreaseCount}
               onReduceCount={onReduceCount}
               onChangeCount={onChangeCount}
+              onRemoveOrder={onRemoveOrder}
               product={product}
             />
           );

@@ -11,6 +11,8 @@
   }
 
   &-Checkout {
+    display: flex;
+
     &__button {
       border: none;
       padding: 5px;
