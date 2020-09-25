@@ -14,10 +14,8 @@ const Order = (props) => {
   } = props;
   const { id, imgUrl, title, price } = product;
 
-  const refQuantity = useRef(null);
-
   return (
-    <div className={"Order"}>
+    <div className={'Order'}>
       <img className={"Order-Img"} src={`/${imgUrl}`} alt={title} />
 
       <div className={"Order-Title"}>{title}</div>
@@ -42,7 +40,7 @@ const Order = (props) => {
         </button>
       </div>
 
-      <div className={'Order-CountItem'}>{price * countsProduct}</div>
+      <div className={"Order-CountItem"}>{price * countsProduct}</div>
 
       <img className={"Order-Remove"} src={remove} alt="remove" />
     </div>

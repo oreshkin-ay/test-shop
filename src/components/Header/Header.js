@@ -6,11 +6,11 @@ import "./header.scss";
 const Header = () => {
   return (
     <header className="Header">
-      <Link to="/" class="Header-Link">
+      <Link to="/" className="Header-Link">
         Главная
       </Link>
 
-      <Link to="/cart" class="Header-Link">
+      <Link to="/cart" className="Header-Link">
         Корзина
       </Link>
     </header>

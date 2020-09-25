@@ -1,3 +1,5 @@
+import api from "../../service/api";
+
 export const buyProduct = (product) => (dispatch, getState) => {
   const state = getState();
   const { id } = product;
@@ -48,4 +50,20 @@ export const setCountProduct = (countProduct) => (dispatch) => {
     type: "SET_COUNT",
     payload: countProduct,
   });
+};
+
+export const checkout = (isError = true) => async (dispatch, getState) => {
+  const state = getState();
+  const { cart } = state;
+
+  try {
+    await api.сheckoutOrder(cart, isError);
+
+    dispatch({
+      type: "SUCCESS_ORDER",
+      payload: true,
+    });
+  } catch (e) {
+    dispatch({ type: "ERROR_ORDER", payload: true });
+  }
 };

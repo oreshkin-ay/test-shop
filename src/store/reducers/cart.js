@@ -3,8 +3,8 @@ export const storeNamePepos = "Cart";
 const initialState = {
   counts: {},
   productDetails: {},
-  // order: [],
-  // summ: 0,
+  successOrder: null,
+  errorOrder: null,
 };
 
 export default (state = initialState, action) => {
@@ -23,7 +23,6 @@ export default (state = initialState, action) => {
           ...productDetails,
         },
       };
-
     case "SET_COUNT":
       return {
         ...state,
@@ -32,7 +31,18 @@ export default (state = initialState, action) => {
           ...payload,
         },
       };
-
+    case "SUCCESS_ORDER":
+      return {
+        ...state,
+        successOrder: payload,
+        errorOrder: null,
+      };
+    case "ERROR_ORDER":
+      return {
+        ...state,
+        successOrder: null,
+        errorOrder: payload,
+      };
     default:
       return state;
   }

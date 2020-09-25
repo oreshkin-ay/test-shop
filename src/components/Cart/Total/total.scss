@@ -1,0 +1,35 @@
+.Wrap-Total {
+  grid-template-columns: 1fr [total] 1fr 1fr;
+  display: grid;
+}
+
+.Total {
+  grid-column: total;
+
+  &-Sum {
+    margin-bottom: 10px;
+  }
+
+  &-Checkout {
+    &__button {
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      color: white;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &-success {
+        width: 100px;
+        background: green;
+        margin-right: 10px;
+      }
+
+      &-error {
+        background: red;
+      }
+    }
+  }
+}

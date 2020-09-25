@@ -24,8 +24,14 @@ const getDetails = async (idProduct) => {
   return COMMODITY_DETAILS[idProduct];
 };
 
+/**
+ * оформить
+ */
+const сheckoutOrder = async (idProduct) => {};
+
 export default {
   getCatalog,
   getProducts,
   getDetails,
+  сheckoutOrder,
 };

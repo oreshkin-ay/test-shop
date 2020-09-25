@@ -12,6 +12,9 @@ import {
 } from "../../store/selector/cart";
 
 import Order from "./Order/index";
+import Total from "./Total";
+
+import "./cart.scss";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -42,20 +45,23 @@ const Cart = () => {
   );
 
   return (
-    <div className={"Wrap-Order"}>
-      {list.map((product) => {
-        return (
-          <Order
-            key={`${product.id}`}
-            countsProduct={countsProduct[product.id]}
-            onIncreaseCount={onIncreaseCount}
-            onReduceCount={onReduceCount}
-            onChangeCount={onChangeCount}
-            product={product}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className={"Wrap-Order"}>
+        {list.map((product) => {
+          return (
+            <Order
+              key={`${product.id}`}
+              countsProduct={countsProduct[product.id]}
+              onIncreaseCount={onIncreaseCount}
+              onReduceCount={onReduceCount}
+              onChangeCount={onChangeCount}
+              product={product}
+            />
+          );
+        })}
+      </div>
+      <Total />
+    </>
   );
 };
 
