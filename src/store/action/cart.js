@@ -2,6 +2,9 @@ import api from "../../service/api";
 
 const ERROR_MESSAGE = "Недостаточно средств";
 
+/**
+ * покупка
+ */
 export const buyProduct = (product) => (dispatch, getState) => {
   const state = getState();
   const { id } = product;
@@ -23,6 +26,9 @@ export const buyProduct = (product) => (dispatch, getState) => {
   });
 };
 
+/**
+ * увеличение количества в корзине
+ */
 export const increaseCountProduct = (idProduct) => (dispatch, getState) => {
   const state = getState();
   const count = state.cart.counts[idProduct];
@@ -35,6 +41,9 @@ export const increaseCountProduct = (idProduct) => (dispatch, getState) => {
   });
 };
 
+/**
+ * уменьшение количества в корзине
+ */
 export const reduceCountProduct = (idProduct) => (dispatch, getState) => {
   const state = getState();
   const count = state.cart.counts[idProduct];
@@ -47,6 +56,9 @@ export const reduceCountProduct = (idProduct) => (dispatch, getState) => {
   });
 };
 
+/**
+ * ручная установка количества в корзине
+ */
 export const setCountProduct = (countProduct) => (dispatch) => {
   dispatch({
     type: "SET_COUNT",
@@ -54,6 +66,9 @@ export const setCountProduct = (countProduct) => (dispatch) => {
   });
 };
 
+/**
+ * удаление продукта из корзины
+ */
 export const removeOrder = (idProduct) => (dispatch, getState) => {
   const state = getState();
   const { counts, productDetails } = state.cart;
@@ -100,6 +115,9 @@ export const checkout = (isError = false) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * чистка корзины
+ */
 export const cleanCart = () => (dispatch) => {
   dispatch({
     type: "CART_CLEAN",

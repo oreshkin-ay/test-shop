@@ -10,7 +10,7 @@ const OrderSuccess = () => {
     return () => {
       dispatch(cleanCart());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>

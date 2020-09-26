@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Card from "../Card";
 
 import "./category.scss";
 
@@ -15,10 +16,10 @@ const Category = ({ category }) => {
   };
 
   return (
-    <article className={"Category"} onClick={handleClick}>
+    <Card onClick={handleClick}>
       <img className={"Category-Img"} src={imgUrl} alt={title} />
       <div className={"Category-Name Text"}>{title}</div>
-    </article>
+    </Card>
   );
 };
 

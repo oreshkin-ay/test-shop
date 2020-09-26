@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { totalSelector } from "../../../store/selector/cart";
 
 import "./total.scss";
 

@@ -2,7 +2,6 @@ export const storeNamePepos = "Catalog";
 
 const initialState = {
   list: [],
-  total: 0,
 };
 
 export default (state = initialState, action) => {

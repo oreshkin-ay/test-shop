@@ -2,12 +2,15 @@ import { COMMODITY_DETAILS } from "./mockCommodity";
 import { CATALOG } from "./mockCatalog";
 import { PRODUCTS } from "./mockProducts";
 
+/**
+ * эмуляция запроса
+ */
 const fetch = (data, isError = false) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (!isError) resolve(data);
       reject(data);
-    }, 2000);
+    }, 1000);
   });
 };
 
@@ -33,7 +36,7 @@ const getDetails = (idProduct) => {
 };
 
 /**
- * оформить
+ * оформление покупки
  */
 const сheckoutOrder = (cart, isError) => {
   return fetch(cart, isError);
