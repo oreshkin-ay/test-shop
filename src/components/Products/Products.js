@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { matchPath, useHistory } from "react-router-dom";
 
 import { getProducts } from "../../store/action/products";
 
@@ -10,13 +10,18 @@ import ErrorBoundaries from "../ErrorBoundaries";
 
 const Products = () => {
   const history = useHistory();
+  const { pathname } = history.location;
   const dispatch = useDispatch();
+  const match = matchPath(pathname, {
+    path: "/catalog/:id",
+  });
 
   /** EFFECT */
   useEffect(() => {
-    // TODO
-    dispatch(getProducts("test-1"));
-  }, [history.location.pathname, dispatch]);
+    if (match.params.id) {
+      dispatch(getProducts(match.params.id));
+    }
+  }, [match.params.id, dispatch]);
 
   /** SELECTOR */
   const { listProducts } = useSelector((state) => {
