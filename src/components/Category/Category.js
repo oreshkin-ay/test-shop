@@ -5,7 +5,7 @@ import "./category.scss";
 
 const Category = ({ category }) => {
   const { title, categoryName, imgUrl } = category;
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();

@@ -7,7 +7,8 @@ import Сommodity from "./Сommodity";
 import Products from "./Products";
 import Catalog from "./Catalog";
 import Cart from "./Cart/Cart";
-import NotFound from "./NotFound/NotFound";
+import NotFound from "./NotFound";
+import OrderSuccess from "./OrderSuccess";
 
 const ShopRouter = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const ShopRouter = () => (
         <Route exact path="/catalog/:product" component={Products} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/" component={Catalog} />
+        <Route exact path="/order-success" component={OrderSuccess} />
         <Route exact path="*" component={NotFound} />
       </Switch>
     </LayoutCommon>

@@ -4,7 +4,6 @@ const initialState = {
   counts: {},
   productDetails: {},
   successOrder: null,
-  errorOrder: null,
 };
 
 export default (state = initialState, action) => {
@@ -36,18 +35,13 @@ export default (state = initialState, action) => {
         ...state,
         ...payload,
       };
-    case "SUCCESS_ORDER":
+    case "ORDER_SUCCESS":
       return {
         ...state,
         successOrder: payload,
-        errorOrder: null,
       };
-    case "ERROR_ORDER":
-      return {
-        ...state,
-        successOrder: null,
-        errorOrder: payload,
-      };
+    case "CART_CLEAN":
+      return initialState;
     default:
       return state;
   }

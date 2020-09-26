@@ -1,5 +1,7 @@
 import api from "../../service/api";
 
+const ERROR_MESSAGE = "Недостаточно средств";
+
 export const buyProduct = (product) => (dispatch, getState) => {
   const state = getState();
   const { id } = product;
@@ -94,6 +96,12 @@ export const checkout = (isError = false) => async (dispatch, getState) => {
       payload: result,
     });
   } catch {
-    dispatch({ type: "ORDER_FAILURE", payload: { message: "Error" } });
+    dispatch({ type: "ORDER_FAILURE", payload: { message: ERROR_MESSAGE } });
   }
+};
+
+export const cleanCart = () => (dispatch) => {
+  dispatch({
+    type: "CART_CLEAN",
+  });
 };

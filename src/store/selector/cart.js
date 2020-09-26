@@ -22,8 +22,7 @@ export const totalSelector = (state) => {
 };
 
 export const checkoutResultSelector = (state) => {
-  const { successOrder, errorOrder } = state.cart;
+  const { successOrder } = state.cart;
 
-  console.log();
-  return { successOrder, errorOrder };
+  return successOrder;
 };

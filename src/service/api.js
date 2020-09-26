@@ -4,8 +4,10 @@ import { PRODUCTS } from "./mockProducts";
 
 const fetch = (data, isError = false) => {
   return new Promise((resolve, reject) => {
-    if (!isError) setTimeout(() => resolve(data), 2000);
-    setTimeout(() => reject(data), 2000);
+    setTimeout(() => {
+      if (!isError) resolve(data);
+      reject(data);
+    }, 2000);
   });
 };
 

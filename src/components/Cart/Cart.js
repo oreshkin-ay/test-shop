@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import {
   checkout,
@@ -12,6 +13,7 @@ import {
   cartProductSelector,
   cartsCountsSelector,
   totalSelector,
+  checkoutResultSelector,
 } from "../../store/selector/cart";
 
 import Order from "./Order/index";
@@ -20,6 +22,8 @@ import Total from "./Total";
 import "./cart.scss";
 import { loadingSelector } from "../../store/selector/loading";
 import { errorSelector } from "../../store/selector/error";
+import ErrorInfo from "../Message/ErrorInfo/ErrorInfo";
+import Loader from "../Loader";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -35,6 +39,7 @@ const Cart = () => {
   const list = useSelector(cartProductSelector);
   const countsProduct = useSelector(cartsCountsSelector);
   const totalSum = useSelector(totalSelector);
+  const checkoutResult = useSelector(checkoutResultSelector);
 
   /** CALLBACKS */
   const onCheckout = useCallback(() => {
@@ -98,7 +103,19 @@ const Cart = () => {
         onCheckoutError={onCheckoutError}
       />
 
-      {/* {error} */}
+      {isFetching && (
+        <div className={"Card-Buy__load"}>
+          <Loader />
+        </div>
+      )}
+
+      {error?.isError && (
+        <div className={"Card-Buy__error"}>
+          <ErrorInfo message={error.message} />
+        </div>
+      )}
+
+      {checkoutResult && <Redirect to="/order-success" />}
     </>
   );
 };
