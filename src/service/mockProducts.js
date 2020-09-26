@@ -10,7 +10,7 @@ export const PRODUCTS = {
       id: "5824219b2",
       title: 'Велосипед Author Basic, рама 19" и 21"',
       price: 14900,
-      imgUrl: "products/asus.png",
+      imgUrl: "products/huawei.png",
     },
     {
       id: "5824219b3",
